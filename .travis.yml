@@ -1,0 +1,11 @@
+language: java
+
+jdk:
+  - openjdk11          // tells Travis to use Java 8
+
+os:
+  - linux
+
+script:
+  - ./gradlew clean assemble
+  - ./gradlew test
