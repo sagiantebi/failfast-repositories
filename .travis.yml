@@ -5,7 +5,19 @@ jdk:
 
 os:
   - linux
+  -
+stages:
+  - compile
+  - test
+  - name: deploy
+    if: branch = master
 
-script:
-  - ./gradlew clean assemble
-  - ./gradlew test
+
+jobs:
+  include:
+    - stage: compile
+      script: ./gradlew clean assemble
+    - stage: test
+      script: ./gradlew test
+    - stage: deploy
+      script: ./gradlew bintrayUpload

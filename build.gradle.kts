@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.sagiantebi"
-version = "0.1"
+version = "0.2"
 
 repositories {
     mavenCentral()
@@ -62,15 +62,15 @@ bintray {
     key = if (project.hasProperty("bintrayApiKey")) { project.property("bintrayApiKey") as String } else { System.getenv("BINTRAY_API_KEY") ?: "" }
     setConfigurations("archives")
     with(pkg) {
-        dryRun = true
         repo = "mvn"
+        publish = true
         name = project.name
         userOrg = user
         setLicenses("MIT")
         vcsUrl = "https://github.com/sagiantebi/failfast-repositories"
         with(version) {
             name = project.name
-            desc = ""
+            desc = "A gradle plugin to manage maven raven repos - initial version"
             vcsTag = project.version.toString() //assume version is git-tagged.
         }
     }
